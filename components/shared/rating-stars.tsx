@@ -1,5 +1,3 @@
-// components/shared/rating-stars.tsx
-
 import { Star } from 'lucide-react';
 
 interface RatingStarsProps {

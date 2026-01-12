@@ -7,7 +7,6 @@ const axiosClient = axios.create({
   },
 });
 
-// Gắn accessToken tự động nếu có
 axiosClient.interceptors.request.use((config) => {
   if (typeof window !== 'undefined') {
     const token = localStorage.getItem('accessToken');

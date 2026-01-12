@@ -1,5 +1,3 @@
-// lib/cart-context.tsx
-
 'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
@@ -25,7 +23,6 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([]);
 
-  // Load cart từ localStorage khi mount
   useEffect(() => {
     const savedCart = localStorage.getItem('cart');
     if (savedCart) {
@@ -33,12 +30,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  // Save cart vào localStorage khi thay đổi
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
-  // Thêm sản phẩm vào giỏ hàng
   const addToCart = (product: Product) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.id === product.id);
@@ -59,13 +54,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
   };
 
-  // Xóa sản phẩm khỏi giỏ hàng
   const removeFromCart = (productId: number) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
     toast.success('Removed from cart!');
   };
 
-  // Cập nhật số lượng
   const updateQuantity = (productId: number, quantity: number) => {
     if (quantity <= 0) {
       removeFromCart(productId);

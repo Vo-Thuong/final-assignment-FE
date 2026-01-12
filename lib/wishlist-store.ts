@@ -1,5 +1,4 @@
 import { create } from "zustand"
-//remember to tìm hiểu về zustand
 type WishlistItem = {
   id: number
   name: string

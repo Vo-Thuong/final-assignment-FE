@@ -1,13 +1,11 @@
-
-
-import CategorySidebar from '@/components/layout/header/category-sidebar';
-import NavigationMenu from '@/components/layout/header/navigation-menu';
-import HeroSlider from '@/components/home/hero-slider';
-import SideBanners from '@/components/home/side-banners';
-import CategorySection from '@/components/home/category-section';
-import ProductSection from '@/components/home/product-section';
-import DealSection from '@/components/home/deal-section';
-import InstagramFeed from '@/components/home/instagram-feed';
+import CategorySidebar from '@/components/layout/header/sidebar-categories';
+import NavigationMenu from '@/components/layout/header/menu';
+import HeroSlider from '@/components/layout/header/slide-header';
+import SideBanners from '@/components/layout/header/side-banners';
+import CategorySection from '@/components/home/top-categories';
+import ProductSection from '@/components/home/popular-product';
+import DealSection from '@/components/home/flash-sale';
+import InstagramFeed from '@/components/home/slide-instagram';
 export default function HomePage() {
   return (
     <>

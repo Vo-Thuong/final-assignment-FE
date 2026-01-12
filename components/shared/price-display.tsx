@@ -1,4 +1,3 @@
-
 interface PriceDisplayProps {
   price: number;
   oldPrice?: number;

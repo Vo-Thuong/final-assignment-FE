@@ -1,5 +1,3 @@
-// data/products.ts
-
 import { Product } from '@/types';
 
 const COLORS = ["Black", "Blue", "Grey", "Green", "Red"];

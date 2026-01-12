@@ -35,7 +35,6 @@ export default function ProductCard({ product }: ProductCardProps) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* IMAGE */}
       <Link
         href={`/shop/${product.id}`}
         className="relative block aspect-square overflow-hidden"
@@ -48,7 +47,6 @@ export default function ProductCard({ product }: ProductCardProps) {
           className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
 
-        {/* BADGES */}
         {product.isNew && (
           <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs px-2 py-1 rounded">
             New
@@ -61,7 +59,6 @@ export default function ProductCard({ product }: ProductCardProps) {
         )}
       </Link>
 
-      {/* QUICK ACTIONS */}
       <div
         className={`absolute top-3 right-3 flex flex-col gap-2 transition-all duration-300 ${
           isHovered
@@ -69,7 +66,6 @@ export default function ProductCard({ product }: ProductCardProps) {
             : 'opacity-0 translate-x-2'
         }`}
       >
-        {/* WISHLIST */}
         <Button
           type="button"
           variant={liked ? 'default' : 'secondary'}
@@ -83,14 +79,12 @@ export default function ProductCard({ product }: ProductCardProps) {
           />
         </Button>
 
-        {/* VIEW */}
         <Link href={`/shop/${product.id}`}>
           <Button type="button" variant="secondary" size="icon">
             <Eye className="w-5 h-5" />
           </Button>
         </Link>
 
-        {/* ADD TO CART */}
         <Button
           type="button"
           variant="secondary"
@@ -101,7 +95,6 @@ export default function ProductCard({ product }: ProductCardProps) {
         </Button>
       </div>
 
-      {/* INFO */}
       <div className="p-4">
         <Link href={`/shop/${product.id}`}>
           <h3 className="font-medium hover:text-primary transition mb-2">
@@ -109,12 +102,10 @@ export default function ProductCard({ product }: ProductCardProps) {
           </h3>
         </Link>
 
-        {/* RATING */}
         <div className="mb-2">
           <RatingStars rating={product.rating} reviews={product.reviews} />
         </div>
 
-        {/* PRICE */}
         <div className="flex items-center gap-2">
           <span className="text-lg font-bold">
             ${product.price.toFixed(2)}

@@ -1,5 +1,3 @@
-// data/categories.ts
-
 import { Category } from '@/types';
 
 export const categories: Category[] = [

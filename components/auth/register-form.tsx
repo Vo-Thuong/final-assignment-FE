@@ -7,6 +7,7 @@ import { z } from 'zod';
 import axiosClient from '@/lib/axios';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { User, Mail, Lock, ArrowRight } from "lucide-react";
 
 type RegisterForm = z.infer<typeof registerSchema>;
 
@@ -42,83 +43,56 @@ const onSubmit = async (data: RegisterForm) => {
 
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="w-full max-w-md space-y-4"
-    >
-      <h1 className="text-2xl font-bold">Register</h1>
-
-      {/* USERNAME */}
-      <div>
+    <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-5">
+      <div className="relative group">
+        <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none">
+          <Mail className="w-4 h-4 text-gray-400 group-focus-within:text-[#d51243] transition-colors" />
+        </div>
         <input
-          {...register('username')}
-          placeholder="Username"
-          className="w-full border p-2 rounded"
-        />
-        {errors.username && (
-          <p className="text-red-500 text-sm">
-            {errors.username.message}
-          </p>
-        )}
-      </div>
-
-      {/* EMAIL */}
-      <div>
-        <input
-          {...register('email')}
-          placeholder="Email"
-          className="w-full border p-2 rounded"
+          {...register("email")}
+          placeholder="Email address"
+          className="w-full h-14 pl-12 pr-5 bg-white border-none rounded-md text-[15px] focus:ring-2 focus:ring-[#d51243]/20 outline-none transition-all placeholder:text-gray-400 shadow-sm"
         />
         {errors.email && (
-          <p className="text-red-500 text-sm">
+          <p className="text-red-500 text-xs mt-1 ml-1">
             {errors.email.message}
           </p>
         )}
       </div>
 
-      {/* PASSWORD */}
-      <div>
+      <div className="relative group">
+        <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none">
+          <Lock className="w-4 h-4 text-gray-400 group-focus-within:text-[#d51243] transition-colors" />
+        </div>
         <input
           type="password"
-          {...register('password')}
+          {...register("password")}
           placeholder="Password"
-          className="w-full border p-2 rounded"
+          className="w-full h-14 pl-12 pr-5 bg-white border-none rounded-md text-[15px] focus:ring-2 focus:ring-[#d51243]/20 outline-none transition-all placeholder:text-gray-400 shadow-sm"
         />
         {errors.password && (
-          <p className="text-red-500 text-sm">
+          <p className="text-red-500 text-xs mt-1 ml-1">
             {errors.password.message}
           </p>
         )}
       </div>
 
-      {/* CONFIRM PASSWORD */}
-      <div>
-        <input
-          type="password"
-          {...register('confirmPassword')}
-          placeholder="Confirm Password"
-          className="w-full border p-2 rounded"
-        />
-        {errors.confirmPassword && (
-          <p className="text-red-500 text-sm">
-            {errors.confirmPassword.message}
-          </p>
-        )}
+      <div className="pb-2">
+        <Link
+          href="/login"
+          className="text-sm font-semibold text-gray-900 hover:text-[#d51243] underline transition-colors"
+        >
+          Already Have Account?
+        </Link>
       </div>
 
       <button
         disabled={isSubmitting}
-        className="w-full bg-black text-white py-2 rounded"
+        className="group w-full h-14 bg-black text-white rounded-md font-bold text-[15px] flex items-center justify-center gap-3 hover:bg-gray-800 transition-all disabled:opacity-70 shadow-lg"
       >
-        Register
+        Register Now
+        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
       </button>
-
-      <p className="text-sm text-center">
-        Already have an account?{' '}
-        <Link href="/login" className="underline">
-          Login
-        </Link>
-      </p>
     </form>
   );
 }

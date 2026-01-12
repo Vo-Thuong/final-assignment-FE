@@ -1,16 +1,11 @@
-// app/layout.tsx
-
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-
 import TopBar from "@/components/layout/header/top-bar";
 import Header from "@/components/layout/header/header";
 import Footer from "@/components/layout/footer/footer";
-
 import { CartProvider } from "@/components/cart/cart-summary";
 import { WishlistProvider } from "@/components/wishlist/wishlist-context";
-
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "@/components/layout/theme/theme-provider";
 

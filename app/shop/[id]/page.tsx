@@ -6,7 +6,6 @@ export default async function ShopDetailPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
-  // ✅ UNWRAP params
   const { id } = await params;
 
   const product = products.find(

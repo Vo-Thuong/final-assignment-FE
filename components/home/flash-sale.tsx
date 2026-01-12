@@ -52,7 +52,6 @@ export default function DealSection() {
   return (
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4 flex justify-center">
-        {/* Banner */}
         <div
           className="
             w-full rounded-2xl overflow-hidden
@@ -62,7 +61,6 @@ export default function DealSection() {
           "
         >
           <div className="flex flex-col lg:flex-row items-center gap-8 p-8 lg:p-12">
-            {/* Image */}
             <div className="flex-shrink-0">
               <div className="relative w-64 h-64 lg:w-[400px] lg:h-[400px]">
                 <Image
@@ -74,9 +72,7 @@ export default function DealSection() {
               </div>
             </div>
 
-            {/* Content */}
             <div className="text-center lg:text-left mx-auto max-w-xl">
-              {/* Price */}
               <div className="flex items-baseline gap-4 mb-4 justify-center lg:justify-start">
                 <span className="text-2xl font-semibold text-primary">
                   $49.00
@@ -86,19 +82,16 @@ export default function DealSection() {
                 </span>
               </div>
 
-              {/* Title */}
               <Link href="/shop-details">
                 <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4 hover:text-primary transition-colors">
                   Pro2 Abstract Folded Pots
                 </h2>
               </Link>
 
-              {/* Description */}
               <p className="text-muted-foreground mb-6">
                 Turning Passion into Career – VTC Academy
               </p>
 
-              {/* Countdown */}
               <div className="flex gap-4 justify-center lg:justify-start mb-6">
                 {[
                   { label: 'Days', value: timeLeft.days },
@@ -119,7 +112,6 @@ export default function DealSection() {
                 ))}
               </div>
 
-              {/* Note */}
               <p className="text-sm text-muted-foreground italic">
                 *Remains until the end of the offer
               </p>

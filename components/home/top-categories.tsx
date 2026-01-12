@@ -8,13 +8,13 @@ export default function CategorySection() {
   return (
     <section className="py-16 bg-background text-foreground">
       <div className="container mx-auto px-4">
-        {/* Title */}
-        <h2 className="text-3xl font-extrabold text-left mb-12">
-          <span className="text-foreground">Top </span>
-          <span className="text-primary font-serif">Categories</span>
+        <h2 className="text-[30px] font-bold text-left mb-10 leading-tight">
+          <span className="text-[#111111]">Top </span>
+          <span className="text-[#d51243] font-serif italic font-medium ml-1">
+            <a href="/categories">Categories</a>
+          </span>
         </h2>
 
-        {/* Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 divide-x divide-border">
           {categories.map((category) => (
             <Link
@@ -31,7 +31,6 @@ export default function CategorySection() {
                   hover:shadow-md
                 "
               >
-                {/* Icon */}
                 <div className="relative w-16 h-16 mx-auto mb-4">
                   <Image
                     src={category.icon}
@@ -41,12 +40,10 @@ export default function CategorySection() {
                   />
                 </div>
 
-                {/* Badge */}
                 <span className="inline-block bg-primary text-primary-foreground text-xs px-2 py-1 rounded mb-2">
                   {category.productCount}
                 </span>
 
-                {/* Name */}
                 <h3 className="font-medium text-sm text-foreground group-hover:text-primary transition-colors">
                   {category.name}
                 </h3>

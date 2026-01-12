@@ -1,5 +1,3 @@
-// components/layout/navigation-menu.tsx
-
 'use client';
 
 import { useState } from 'react';
@@ -47,7 +45,6 @@ export default function NavigationMenu() {
 
   return (
     <div className="flex items-center justify-between h-16 px-5">
-      {/* Main Menu */}
       <ul className="flex items-center gap-8 font-semibold">
         {menuItems.map((item) => (
           <li
@@ -95,7 +92,6 @@ export default function NavigationMenu() {
         </li>
       </ul>
 
-      {/* Right Links */}
       <div className="flex items-center gap-8 h-16 ">
         <a
           href="tel:1900292958"
