@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { products } from "@/data/products";
-import ProductCard from "@/components/product/product-card";
+import ProductCard from "@/components/product/card-product";
 
 export default function ProductSection() {
   const [activeTab, setActiveTab] = useState("all");

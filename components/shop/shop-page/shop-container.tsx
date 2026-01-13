@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { products } from "@/data/products";
-import ProductGrid from "@/components/product/product-grid";
+import ProductGrid from "@/components/product/grid";
 import ShopToolbar from "./shop-toolbar";
 import ShopSidebar from "./shop-sidebar";
 
