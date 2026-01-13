@@ -27,9 +27,7 @@ export default function ShopToolbar({
 }: Props) {
   return (
     <div className="flex items-center justify-between mb-6 border-b pb-4">
-      <p className="text-sm text-muted-foreground">
-        {total} Item On List
-      </p>
+      <p className="text-sm text-muted-foreground">{total} Item On List</p>
 
       <div className="flex items-center gap-4">
         <Select defaultValue="default">
@@ -51,7 +49,8 @@ export default function ShopToolbar({
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="12">12 per page</SelectItem>
+            <SelectItem value="12">All</SelectItem>
+            <SelectItem value="24">12 per page</SelectItem>
             <SelectItem value="24">24 per page</SelectItem>
             <SelectItem value="36">36 per page</SelectItem>
           </SelectContent>
