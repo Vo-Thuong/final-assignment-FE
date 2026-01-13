@@ -1,14 +1,13 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Heart, Eye, ShoppingCart } from 'lucide-react';
-import { Product } from '@/types';
-import RatingStars from '@/components/shared/rating-stars';
-import { useCart } from '@/components/cart/cart-summary';
-import { useWishlist } from '@/components/wishlist/wishlist-context';
-import { Button } from '@/components/ui/button';
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Heart, Eye, ShoppingCart, ArrowLeftRight } from "lucide-react";
+import { Product } from "@/types";
+import RatingStars from "@/components/shared/rating-stars";
+import { useCart } from "@/components/cart/cart-summary";
+import { useWishlist } from "@/components/wishlist/wishlist-context";
 
 interface ProductCardProps {
   product: Product;
@@ -16,7 +15,6 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
-
   const { addToCart } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
 
@@ -24,98 +22,105 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <div
-      className="
-        group relative
-        bg-card text-card-foreground
-        rounded-lg overflow-hidden
-        border
-        transition
-        hover:shadow-lg
-      "
+      className="group bg-transparent w-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <Link
-        href={`/shop/${product.id}`}
-        className="relative block aspect-square overflow-hidden"
-      >
-        <Image
-          src={isHovered && product.hoverImage ? product.hoverImage : product.image}
-          alt={product.name}
-          fill
-          sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
-        />
-
-        {product.isNew && (
-          <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs px-2 py-1 rounded">
-            New
-          </span>
-        )}
-        {product.isSale && (
-          <span className="absolute top-3 left-3 bg-destructive text-destructive-foreground text-xs px-2 py-1 rounded">
-            Sale
-          </span>
-        )}
-      </Link>
-
-      <div
-        className={`absolute top-3 right-3 flex flex-col gap-2 transition-all duration-300 ${
-          isHovered
-            ? 'opacity-100 translate-x-0'
-            : 'opacity-0 translate-x-2'
-        }`}
-      >
-        <Button
-          type="button"
-          variant={liked ? 'default' : 'secondary'}
-          size="icon"
-          onClick={() => toggleWishlist(product)}
-        >
-          <Heart
-            className={`w-5 h-5 ${
-              liked ? 'fill-current' : ''
-            }`}
+      <div className="relative aspect-square bg-[#f8f8f8] rounded-2xl overflow-hidden mb-5">
+        <Link href={`/shop/${product.id}`} className="block w-full h-full">
+          <Image
+            src={
+              isHovered && product.hoverImage
+                ? product.hoverImage
+                : product.image
+            }
+            alt={product.name}
+            fill
+            sizes="(max-width: 768px) 50vw, 33vw"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
           />
-        </Button>
-
-        <Link href={`/shop/${product.id}`}>
-          <Button type="button" variant="secondary" size="icon">
-            <Eye className="w-5 h-5" />
-          </Button>
         </Link>
 
-        <Button
-          type="button"
-          variant="secondary"
-          size="icon"
-          onClick={() => addToCart(product)}
+        <div
+          className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${
+            isHovered ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
         >
-          <ShoppingCart className="w-5 h-5" />
-        </Button>
+          <div
+            className={`flex items-center bg-white rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] px-2 py-1 transition-all duration-300 transform ${
+              isHovered ? "scale-100 translate-y-0" : "scale-90 translate-y-4"
+            }`}
+          >
+            <button
+              onClick={() => addToCart(product)}
+              className="p-3 text-gray-500 hover:text-[#d51243] transition-colors"
+              title="Add to cart"
+            >
+              <ShoppingCart className="w-5 h-5 stroke-[1.5px]" />
+            </button>
+            <button
+              className="p-3 text-gray-500 hover:text-[#d51243] transition-colors border-x border-gray-100"
+              title="Compare"
+            >
+              <ArrowLeftRight className="w-5 h-5 stroke-[1.5px]" />
+            </button>
+            <Link
+              href={`/shop/${product.id}`}
+              className="p-3 text-gray-500 hover:text-[#d51243] transition-colors"
+              title="Quick view"
+            >
+              <Eye className="w-5 h-5 stroke-[1.5px]" />
+            </Link>
+            <button
+              onClick={() => toggleWishlist(product)}
+              className={`p-3 border-l border-gray-100 transition-colors ${
+                liked ? "text-[#d51243]" : "text-gray-500 hover:text-[#d51243]"
+              }`}
+              title="Wishlist"
+            >
+              <Heart
+                className={`w-5 h-5 stroke-[1.5px] ${
+                  liked ? "fill-current" : ""
+                }`}
+              />
+            </button>
+          </div>
+        </div>
       </div>
 
-      <div className="p-4">
+      <div className="px-1">
         <Link href={`/shop/${product.id}`}>
-          <h3 className="font-medium hover:text-primary transition mb-2">
+          <h3 className="text-[#8e8e8e] text-[16px] font-normal mb-1 transition-colors group-hover:text-[#d51243]">
             {product.name}
           </h3>
         </Link>
 
-        <div className="mb-2">
-          <RatingStars rating={product.rating} reviews={product.reviews} />
+        <div className="text-[20px] font-bold text-[#111111] mb-3">
+          ${product.price.toFixed(2)}
         </div>
 
-        <div className="flex items-center gap-2">
-          <span className="text-lg font-bold">
-            ${product.price.toFixed(2)}
-          </span>
+        <div
+          className={`flex items-center justify-between transition-all duration-500 ${
+            isHovered
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-2 pointer-events-none"
+          }`}
+        >
+          <div className="flex items-center gap-2">
+            <span className="w-3.5 h-3.5 rounded-full bg-[#a3c7f7] cursor-pointer hover:scale-110 transition-transform"></span>
+            <span className="w-3.5 h-3.5 rounded-full bg-[#e91243] cursor-pointer hover:scale-110 transition-transform"></span>
+            <span className="w-3.5 h-3.5 rounded-full bg-[#ff8a80] cursor-pointer hover:scale-110 transition-transform"></span>
+            <span className="w-3.5 h-3.5 rounded-full bg-[#b39ddb] cursor-pointer hover:scale-110 transition-transform"></span>
+          </div>
 
-          {product.oldPrice && (
-            <span className="text-sm text-muted-foreground line-through">
-              ${product.oldPrice.toFixed(2)}
+          <div className="flex items-center gap-1">
+            <div className="flex text-[#ffc107]">
+              <RatingStars rating={product.rating} />
+            </div>
+            <span className="text-[#8e8e8e] text-[13px] font-medium">
+              ({product.reviews || 0})
             </span>
-          )}
+          </div>
         </div>
       </div>
     </div>

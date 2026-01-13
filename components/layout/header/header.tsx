@@ -7,7 +7,7 @@ import { Search, ShoppingCart, User, Heart, ChevronDown } from "lucide-react";
 import ThemeToggle from "@/components/layout/theme/theme-toggle";
 import { useCart } from "@/components/cart/cart-summary";
 import { useWishlist } from "@/components/wishlist/wishlist-context";
-import CartSidebar from "@/components/cart/mini-cart";
+import CartSidebar from "@/components/cart/your-cart";
 
 export default function Header() {
   const [searchQuery, setSearchQuery] = useState("");
