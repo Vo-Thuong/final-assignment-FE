@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/components/cart/cart-summary";
@@ -13,53 +14,72 @@ interface WishlistRowProps {
 export function WishlistRow({ item }: WishlistRowProps) {
   const { addToCart } = useCart();
   const { toggleWishlist } = useWishlist();
+  const [quantity, setQuantity] = useState(1);
+
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = parseInt(e.target.value);
+    if (!isNaN(val) && val > 0) {
+      setQuantity(val);
+    }
+  };
 
   return (
-    <tr className="border-b border-border last:border-0 hover:bg-gray-50 transition-colors">
-      {/* Image */}
-      <td className="p-4">
-        <div className="relative w-[70px] h-[70px] overflow-hidden rounded-md border border-gray-100">
+    <tr className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
+      <td className="p-4 border-r border-gray-200">
+        <div className="flex justify-center items-center">
           <Image
             src={item.image}
             alt={item.name}
-            fill
-            className="object-cover"
+            width={120}
+            height={120}
+            className="object-contain"
           />
         </div>
       </td>
 
-      {/* Name */}
-      <td className="p-4 font-bold text-[#111111] hover:text-[#d51243] cursor-pointer transition-colors">
+      <td className="p-4 border-r border-gray-200 text-center font-medium text-gray-900">
         {item.name}
       </td>
 
-      {/* Price */}
-      <td className="p-4 font-medium text-gray-600">
-        ${item.price.toFixed(2)}
+      <td className="p-4 border-r border-gray-200 text-center text-gray-600">
+        ${item.price}
       </td>
 
-      {/* Stock Status */}
-      <td className="p-4">
-        <span className="text-green-600 text-sm font-medium bg-green-50 px-2 py-1 rounded">
-          In Stock
-        </span>
+      <td className="p-4 border-r border-gray-200">
+        <div className="flex justify-center">
+          <input
+            type="number"
+            value={quantity}
+            onChange={handleQuantityChange}
+            min="1"
+            className="w-20 h-12 border border-gray-200 rounded text-center text-lg font-bold focus:outline-none focus:border-[#d51243]"
+          />
+        </div>
       </td>
 
-      {/* Add to cart */}
-      <td className="p-4">
-        <Button
-          onClick={() => addToCart(item)}
-          className="bg-[#d51243] text-white hover:bg-[#b9103a] rounded-md h-11 px-6 font-semibold transition-all shadow-sm shadow-[#d51243]/20"
-        >
-          Add To Cart
-        </Button>
+      <td className="p-4 border-r border-gray-200 text-center font-bold">
+        ${(item.price * quantity).toFixed(2)}
       </td>
 
-      {/* Remove */}
-      <td className="p-4 text-right">
+      <td className="p-4 border-r border-gray-200">
+        <div className="flex justify-center">
+          <Button
+            onClick={() => {
+              for (let i = 0; i < quantity; i++) {
+                addToCart(item);
+              }
+            }}
+            className="bg-[#d51243] hover:bg-[#b50f39] text-white font-bold py-6 px-10 rounded-md transition-colors"
+          >
+            Add To Cart
+          </Button>
+        </div>
+      </td>
+
+      <td className="p-4 text-center">
         <button
           onClick={() => toggleWishlist(item)}
-          className="text-gray-400 hover:text-[#d51243] text-sm font-medium underline underline-offset-4 transition-all"
+          className="text-gray-500 hover:text-[#d51243] text-sm transition-colors"
         >
           Remove
         </button>

@@ -7,28 +7,41 @@ interface WishlistTableProps {
 
 export function WishlistTable({ items }: WishlistTableProps) {
   return (
-    <div className="overflow-x-auto bg-white rounded-xl shadow-sm border border-gray-100">
-      <table className="w-full text-sm text-left">
-        <thead className="border-b bg-[#F9F9F9] text-gray-900 font-bold uppercase tracking-wider">
-          <tr>
-            <th className="p-5 w-[120px]">Images</th>
-            <th className="p-5">Products</th>{" "}
-            <th className="p-5">Unit Price</th>
-            <th className="p-5">Stock Status</th>{" "}
-            <th className="p-5">Total</th>
-            <th className="p-5 text-center">Add To Cart</th>
-            <th className="p-5 text-right">Remove</th>
+    <div className="w-full border border-gray-200 rounded-sm overflow-hidden">
+      <table className="w-full border-collapse">
+        <thead>
+          <tr className="border-b border-gray-200">
+            <th className="p-5 border-r border-gray-200 text-center font-bold text-base text-gray-900">
+              Images
+            </th>
+            <th className="p-5 border-r border-gray-200 text-center font-bold text-base text-gray-900">
+              Courses
+            </th>
+            <th className="p-5 border-r border-gray-200 text-center font-bold text-base text-gray-900">
+              Unit Price
+            </th>
+            <th className="p-5 border-r border-gray-200 text-center font-bold text-base text-gray-900">
+              Quantity
+            </th>
+            <th className="p-5 border-r border-gray-200 text-center font-bold text-base text-gray-900">
+              Total
+            </th>
+            <th className="p-5 border-r border-gray-200 text-center font-bold text-base text-gray-900">
+              Add To Cart
+            </th>
+            <th className="p-5 text-center font-bold text-base text-gray-900">
+              Remove
+            </th>
           </tr>
         </thead>
-
-        <tbody className="divide-y divide-gray-100">
+        <tbody>
           {items.map((item) => (
             <WishlistRow key={item.id} item={item} />
           ))}
         </tbody>
       </table>
       {items.length === 0 && (
-        <div className="p-20 text-center text-gray-500 font-medium">
+        <div className="p-20 text-center text-gray-500 text-lg font-medium">
           Your wishlist is currently empty.
         </div>
       )}
